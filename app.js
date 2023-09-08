@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const router = require("./routes/book-routes");
 
 const app = express();
-
+app.use(express.json());
 app.use("/books", router);
 
 mongoose
@@ -15,4 +15,3 @@ mongoose
     app.listen(9000);
   })
   .catch((err) => console.log(err));
-// AR1gI8TluPo2gspz
