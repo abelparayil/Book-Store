@@ -29,7 +29,7 @@ const getById = async (req, res, next) => {
 };
 
 const addBook = async (req, res, next) => {
-  const { name, author, description, price, available } = req.body;
+  const { name, author, description, price, available, image } = req.body;
   let book;
   try {
     book = new Book({
@@ -38,6 +38,7 @@ const addBook = async (req, res, next) => {
       description,
       price,
       available,
+      image,
     });
     await book.save();
   } catch (err) {
@@ -52,7 +53,7 @@ const addBook = async (req, res, next) => {
 
 const updateBook = async (req, res, next) => {
   const id = req.params.id;
-  const { name, author, description, price, available } = req.body;
+  const { name, author, description, price, available, image } = req.body;
 
   let book;
   try {
@@ -62,6 +63,7 @@ const updateBook = async (req, res, next) => {
       description,
       price,
       available,
+      image,
     });
     book = await book.save();
   } catch (err) {
@@ -84,9 +86,9 @@ const deleteBook = async (req, res, next) => {
   if (!book) {
     return res
       .status(404)
-      .json({ mesage: "Unable to delete the book with the id" });
+      .json({ message: "Unable to delete the book with the id" });
   }
-  return res.status(200).json({ book });
+  return res.status(200).json({ message: "Product successfully deleted" });
 };
 
 exports.getAllBooks = getAllBooks;
